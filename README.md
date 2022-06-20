@@ -7,4 +7,4 @@
 
 ## Running the same app on two alpine versions
 
-`docker compose -f "docker-compose.yaml" up -d --build`
+`docker compose -f "resources/docker-compose.yaml" up -d --build`
