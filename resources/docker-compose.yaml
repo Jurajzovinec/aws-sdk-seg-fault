@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  dashboard-be-on-alpine14:
+    ports:
+      - 3002:3001
+    build:
+      dockerfile: dockerfile.alpine14
+      target: base
+    volumes:
+      - ../:/usr/src/app
+      # The volumes below create versions of their directories that only exist in the container
+      # That means faster loading time as there's no file transfer between the host OS and the container
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+    command: sh -c 'echo "==> Installing packages..." && npm i -d && echo "==> Starting in development mode..." && npm run start:debug'
+
+  dashboard-be-on-alpine16:
+    ports:
+      - 3003:3001
+    build:
+      dockerfile: dockerfile.alpine16
+      target: base
+    volumes:
+      - ../:/usr/src/app
+      # The volumes below create versions of their directories that only exist in the container
+      # That means faster loading time as there's no file transfer between the host OS and the container
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+    command: sh -c 'echo "==> Installing packages..." && npm i -d && echo "==> Starting in development mode..." && npm run start:debug'
